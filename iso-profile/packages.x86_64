@@ -1,0 +1,112 @@
+# a) Purpose: Defines the default package list for the Ulo Linux system and live ISO.
+# c) Install/Test: Used by mkarchiso to populate the rootfs.
+# d) Open decisions: Included both intel and amd microcode. Wayland native apps heavily prioritized over X11.
+
+# --- Core System ---
+base
+base-devel
+linux-zen
+linux-zen-headers
+linux-firmware
+amd-ucode
+intel-ucode
+btrfs-progs
+grub
+efibootmgr
+systemd
+systemd-sysvcompat
+networkmanager
+nano
+vim
+git
+sudo
+wget
+curl
+polkit
+
+# --- QEMU & Virtualization (Ulo QEMU-first focus) ---
+qemu-guest-agent
+spice-vdagent
+virtio-modules
+mesa # For virgl/virtio-gpu 3D acceleration
+vulkan-virtio
+libvirt
+qemu-desktop
+virt-manager
+
+# --- Display & Compositor (UloShell Base) ---
+hyprland
+wayland
+xorg-xwayland
+polkit-kde-agent
+qt5-wayland
+qt6-wayland
+sddm # Display manager for login
+wlroots
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-wlr
+
+# --- Ulo UI Dependencies (AGS based) ---
+gjs
+gtk3
+gtk-layer-shell
+upower
+networkmanager
+gnome-bluetooth-3.0
+libdbusmenu-gtk3
+sassc
+nodejs
+npm
+
+# --- Default Applications (Ulo App Replacements) ---
+alacritty # Ulo Terminal engine
+thunar # Ulo Files engine (temporary, GVFS supported)
+thunar-volman
+gvfs
+gvfs-google
+gvfs-onedrive
+chromium # Ulo Browser engine
+mpv # Ulo Media player
+imv # Ulo Photos viewer
+code # Ulo Code (Code-OSS) engine
+
+# --- Gaming Hub (Ulo Gaming) ---
+steam
+lutris
+gamemode
+mangohud
+vkbasalt
+wine-staging
+winetricks
+
+# --- Utilities & Tools ---
+timeshift # Ulo Backup/Restore backend
+flatpak # Ulo Store backend (along with pacman)
+gnome-keyring
+seahorse
+pavucontrol
+pipewire
+pipewire-alsa
+pipewire-pulse
+pipewire-jack
+wireplumber
+grim # Screenshot
+slurp # Screen selection
+wl-clipboard
+orca # Screen reader
+
+# --- Dev Environment (ulo-dev meta-package equivalents) ---
+docker
+docker-compose
+python
+python-pip
+go
+rustup
+jdk-openjdk
+
+# --- Fonts & Icons ---
+ttf-inter
+ttf-jetbrains-mono-nerd
+noto-fonts
+noto-fonts-emoji
+papirus-icon-theme

@@ -1,0 +1,187 @@
+/* a) Purpose: CSS for the Ulo Linux website.
+   c) Install/Test: Serve via nginx or open index.html in browser.
+   d) Open decisions: Uses standard web fonts. Colors match Ulo Design Language. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+:root {
+    --bg-color: #0f1115;
+    --text-primary: #ffffff;
+    --text-secondary: #9aa0a6;
+    --accent-cyan: #33ccff;
+    --accent-green: #00ff99;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(15, 17, 21, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--accent-cyan);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-green);
+}
+
+.hero {
+    text-align: center;
+    padding: 150px 20px;
+    background: radial-gradient(circle at 50% 0%, rgba(51, 204, 255, 0.15) 0%, rgba(15, 17, 21, 1) 50%);
+}
+
+.hero h1 {
+    font-size: 64px;
+    margin-bottom: 20px;
+    font-weight: 900;
+    background: -webkit-linear-gradient(45deg, var(--accent-cyan), var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 24px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.btn-primary {
+    background-color: var(--accent-cyan);
+    color: #000;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 18px;
+    transition: transform 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    margin-left: 15px;
+    transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 80px 50px;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    background: #1a1d24;
+    padding: 40px;
+    border-radius: 20px;
+    width: 300px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-cyan);
+}
+
+.feature-card h3 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+}
+
+.download {
+    text-align: center;
+    padding: 100px 20px;
+    background-color: #15181e;
+}
+
+.download h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.download-box {
+    background: #1a1d24;
+    display: inline-block;
+    padding: 30px 50px;
+    border-radius: 20px;
+    margin-top: 30px;
+    border: 1px solid var(--accent-green);
+}
+
+.download-box h4 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+}
+
+.download-box .size {
+    display: block;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.checksum {
+    margin-top: 30px;
+    font-family: monospace;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}

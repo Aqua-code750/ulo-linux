@@ -1,0 +1,19 @@
+# a) Purpose: Docker Compose configuration for the Ulo Linux official package repository mirror.
+# c) Install/Test: `docker-compose up -d` on the cloud host.
+# d) Open decisions: Exposing port 80. In production, this sits behind a reverse proxy (like Traefik/Caddy) for HTTPS.
+
+version: '3.8'
+
+services:
+  ulo-repo:
+    image: nginx:alpine
+    container_name: ulo_repo_server
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./repo-data:/usr/share/nginx/html:ro
+    restart: always
+
+  # Optional: An auto-signer container could be added here to automatically 
+  # GPG sign incoming packages from the CI/CD pipeline.

@@ -1,0 +1,47 @@
+# a) Purpose: Defines the build script for the custom `linux-ulo` kernel.
+# c) Install/Test: Run `makepkg -s` in this directory to compile the kernel.
+# d) Open decisions: Based on the mainline LTS kernel (like Ubuntu) for stability, but packaged via Arch tools for rolling access.
+
+pkgbase=linux-ulo
+pkgver=6.6.30 # Using an LTS base for Agent stability (Ubuntu-style reliability)
+pkgrel=1
+pkgdesc='Ulo Linux custom kernel - Optimized for Agentic AI workloads and QEMU'
+arch=('x86_64')
+url="https://github.com/torvalds/linux"
+license=('GPL2')
+makedepends=(
+  bc kmod libelf cpio perl tar xz
+  python
+  # dependencies for menuconfig
+  ncurses
+)
+options=('!strip')
+source=(
+  "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver}.tar.xz"
+  'ulo.config'
+)
+sha256sums=('SKIP' 'SKIP')
+
+build() {
+  cd linux-${pkgver}
+
+  # Apply the custom Ulo configuration
+  echo "Applying Ulo Linux Agentic Kernel config..."
+  cp ../ulo.config .config
+
+  # Build the kernel
+  make bzImage modules
+}
+
+package() {
+  cd linux-${pkgver}
+  
+  local kernver="$(make kernelrelease)"
+  local modulesdir="$pkgdir/usr/lib/modules/$kernver"
+
+  echo "Installing boot image..."
+  install -Dm644 arch/x86/boot/bzImage "$pkgdir/boot/vmlinuz-$pkgbase"
+
+  echo "Installing modules..."
+  make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 modules_install
+}

@@ -1,0 +1,202 @@
+/* a) Purpose: CSS for the Ulo Store matching the Ulo Design Language.
+   c) Install/Test: Used by Tauri webview.
+   d) Open decisions: Using standard web fonts (Inter) if system font is unavailable. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --bg-color: #121212;
+    --sidebar-bg: #1a1a1a;
+    --card-bg: #242424;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent-cyan: #33ccff;
+    --accent-green: #00ff99;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none; /* Make it feel like a native app */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    border-right: 1px solid #333;
+}
+
+.brand {
+    color: var(--accent-cyan);
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.sidebar li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar li.active {
+    background-color: rgba(51, 204, 255, 0.1);
+    color: var(--accent-cyan);
+}
+
+.badge {
+    background-color: var(--accent-green);
+    color: #000;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-left: auto;
+    float: right;
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.top-bar {
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: 1px solid #444;
+    background-color: #1e1e1e;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.search-bar:focus {
+    border-color: var(--accent-cyan);
+}
+
+.featured-banner {
+    background: linear-gradient(135deg, rgba(51,204,255,0.2) 0%, rgba(0,255,153,0.2) 100%);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.featured-banner h1 {
+    margin: 0 0 10px 0;
+    font-size: 36px;
+}
+
+.featured-banner p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.btn-primary {
+    background-color: var(--accent-cyan);
+    color: #000;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.app-card {
+    background-color: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.app-card:hover {
+    transform: translateY(-2px);
+    border-color: #555;
+}
+
+.app-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    background-color: #444;
+    margin-right: 20px;
+}
+
+.app-icon.discord { background: #5865F2; }
+.app-icon.blender { background: #ea7600; }
+.app-icon.steam { background: #171a21; }
+
+.app-info {
+    flex: 1;
+}
+
+.app-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+}
+
+.app-info p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background-color: #444;
+}
+
+.btn-success {
+    background-color: var(--accent-green) !important;
+    color: #000 !important;
+}

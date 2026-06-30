@@ -1,0 +1,41 @@
+/* a) Purpose: Deeply customizes the Firefox UI to look like a bespoke Ulo Browser.
+   c) Install/Test: Place in ~/.mozilla/firefox/*.default-release/chrome/userChrome.css
+   d) Open decisions: Floating tabs and hidden titlebar. */
+
+/* Hide the native title bar to blend perfectly with UloShell */
+#titlebar {
+  appearance: none !important;
+}
+
+/* Ulo Design Language: Floating, rounded tabs */
+.tabbrowser-tab {
+  border-radius: 8px !important;
+  margin: 4px 2px !important;
+  background-color: transparent !important;
+}
+
+.tabbrowser-tab[selected="true"] {
+  background-color: #2b2b2b !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3) !important;
+  color: #33ccff !important; /* Ulo Neon Cyan Accent */
+}
+
+/* Make the URL bar look like Ulo's global search */
+#urlbar-background {
+  border-radius: 12px !important;
+  background-color: rgba(40, 40, 40, 0.8) !important;
+  backdrop-filter: blur(10px) !important; /* Glassmorphism */
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+#urlbar[focused="true"] > #urlbar-background {
+  border: 1px solid #00ff99 !important; /* Ulo Neon Green Accent */
+}
+
+/* Hide tab bar if only one tab is open (Minimalist look) */
+#tabbrowser-tabs, #tabbrowser-tabs > .tabbrowser-arrowscrollbox {
+  min-height: 0 !important;
+}
+#tabbrowser-tabs tab[first-visible-tab="true"][last-visible-tab="true"] {
+  visibility: collapse !important;
+}

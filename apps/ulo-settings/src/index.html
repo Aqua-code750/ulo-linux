@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulo Settings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2 class="brand">Settings</h2>
+        <ul>
+            <li class="active">System</li>
+            <li>Network & Wi-Fi</li>
+            <li>Bluetooth</li>
+            <li>Personalization</li>
+            <li>Privacy & Agent</li>
+            <li>Updates & Recovery</li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="top-bar">
+            <h1>System</h1>
+            <input type="text" placeholder="Search settings (e.g., 'change display resolution')" class="search-bar agent-search">
+        </div>
+        
+        <div class="settings-grid">
+            <div class="setting-card">
+                <div class="icon display"></div>
+                <div class="info">
+                    <h4>Display</h4>
+                    <p>Resolution, scale, night light</p>
+                </div>
+            </div>
+            <div class="setting-card">
+                <div class="icon sound"></div>
+                <div class="info">
+                    <h4>Sound</h4>
+                    <p>Volume, output devices</p>
+                </div>
+            </div>
+            <div class="setting-card">
+                <div class="icon power"></div>
+                <div class="info">
+                    <h4>Power & Battery</h4>
+                    <p>Performance profiles, sleep</p>
+                </div>
+            </div>
+            <div class="setting-card highlight">
+                <div class="icon qemu"></div>
+                <div class="info">
+                    <h4>QEMU Integration</h4>
+                    <p>Clipboard sync, VirtIO tuning</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

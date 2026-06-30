@@ -1,0 +1,153 @@
+/* a) Purpose: CSS for Ulo Settings matching the Ulo Design Language.
+   c) Install/Test: Used by Tauri webview.
+   d) Open decisions: Re-uses Ulo uniform color palette. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --bg-color: #121212;
+    --sidebar-bg: #1a1a1a;
+    --card-bg: #242424;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent-cyan: #33ccff;
+    --accent-green: #00ff99;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    height: 100vh;
+    user-select: none;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    border-right: 1px solid #333;
+}
+
+.brand {
+    color: var(--text-primary);
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.sidebar li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar li.active {
+    background-color: rgba(51, 204, 255, 0.1);
+    color: var(--accent-cyan);
+    border-left: 4px solid var(--accent-cyan);
+}
+
+.main-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.top-bar h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.search-bar.agent-search {
+    width: 400px;
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: 1px solid #444;
+    background-color: #1e1e1e;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-bar.agent-search:focus {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 10px rgba(51, 204, 255, 0.2);
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.setting-card {
+    background-color: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.setting-card:hover {
+    transform: translateY(-2px);
+    border-color: #555;
+}
+
+.setting-card.highlight {
+    border-color: rgba(0, 255, 153, 0.3);
+    background: linear-gradient(135deg, rgba(0,255,153,0.05) 0%, transparent 100%);
+}
+
+.setting-card.highlight:hover {
+    border-color: var(--accent-green);
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: #444;
+    margin-right: 16px;
+}
+
+.icon.display { background-color: #e0af68; }
+.icon.sound { background-color: #bb9af7; }
+.icon.power { background-color: #f7768e; }
+.icon.qemu { background-color: var(--accent-green); }
+
+.info h4 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+}
+
+.info p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+}

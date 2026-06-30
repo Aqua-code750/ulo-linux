@@ -1,0 +1,44 @@
+# a) Purpose: GitHub Actions workflow to build the custom linux-ulo kernel.
+# c) Install/Test: Pushed to GitHub repository. Runs via Actions.
+# d) Open decisions: The built package (.pkg.tar.zst) is pushed directly to the repo server via SCP (if SSH key is provided).
+
+name: Build Ulo Kernel
+
+on:
+  push:
+    paths:
+      - 'ulo-kernel/**'
+  workflow_dispatch:
+
+jobs:
+  build-kernel:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          pacman -Syu --noconfirm
+          # Install dependencies listed in PKGBUILD
+          pacman -S --noconfirm base-devel sudo bc kmod libelf cpio perl tar xz python ncurses
+
+      - name: Create non-root build user
+        run: |
+          useradd -m builder
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          chown -R builder:builder ./ulo-kernel
+
+      - name: Build Kernel Package
+        run: |
+          su builder -c "cd ulo-kernel && makepkg -s --noconfirm"
+
+      - name: Upload Kernel Package Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-ulo-package
+          path: ulo-kernel/*.pkg.tar.zst
+          retention-days: 7

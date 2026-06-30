@@ -1,0 +1,11 @@
+# a) Purpose: Plymouth boot splash configuration for Ulo Linux.
+# c) Install/Test: Place in /usr/share/plymouth/themes/ulo/ulo.plymouth
+
+[Plymouth Theme]
+Name=Ulo
+Description=Ulo Linux Official Boot Splash
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/ulo
+ScriptFile=/usr/share/plymouth/themes/ulo/ulo.script

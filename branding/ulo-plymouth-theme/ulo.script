@@ -1,0 +1,32 @@
+# a) Purpose: Script animating the Ulo Linux boot splash.
+# c) Install/Test: Used by Plymouth during early boot.
+# d) Open decisions: Kept minimalistic with a pulsing Ulo logo on a dark background.
+
+Window.SetBackgroundTopColor (0.05, 0.06, 0.08); # #0f1115 RGB approximation
+Window.SetBackgroundBottomColor (0.05, 0.06, 0.08);
+
+# Load Ulo Logo
+logo_image = Image("logo.png");
+logo_sprite = Sprite(logo_image);
+
+# Position center
+logo_sprite.SetX(Window.GetWidth() / 2 - logo_image.GetWidth() / 2);
+logo_sprite.SetY(Window.GetHeight() / 2 - logo_image.GetHeight() / 2);
+
+# Basic Opacity Pulsing Animation
+opacity = 0;
+fade_in = 1;
+
+fun refresh_callback ()
+{
+    if (fade_in) {
+        opacity += 0.02;
+        if (opacity >= 1) fade_in = 0;
+    } else {
+        opacity -= 0.02;
+        if (opacity <= 0.2) fade_in = 1;
+    }
+    
+    logo_sprite.SetOpacity(opacity);
+}
+Plymouth.SetRefreshFunction (refresh_callback);

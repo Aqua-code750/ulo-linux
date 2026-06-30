@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulo Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2 class="brand">Ulo Store</h2>
+        <ul>
+            <li class="active">Discover</li>
+            <li>Arcade (Gaming)</li>
+            <li>Dev Tools</li>
+            <li>Creative</li>
+            <li>Updates <span class="badge">5</span></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <div class="top-bar">
+            <input type="text" placeholder="Search for apps, games, or tools..." class="search-bar">
+        </div>
+        
+        <div class="featured-banner">
+            <h1>Ulo Code is here.</h1>
+            <p>The ultimate IDE for the Agentic OS.</p>
+            <button class="btn-primary" onclick="installApp('ulo-code', 'core')">Get</button>
+        </div>
+
+        <h3>Recommended for You</h3>
+        <div class="app-grid">
+            <div class="app-card">
+                <div class="app-icon discord"></div>
+                <div class="app-info">
+                    <h4>Discord</h4>
+                    <p>Chat & Voice</p>
+                </div>
+                <button class="btn-secondary" onclick="installApp('com.discordapp.Discord', 'flatpak')">Install</button>
+            </div>
+            <div class="app-card">
+                <div class="app-icon blender"></div>
+                <div class="app-info">
+                    <h4>Blender</h4>
+                    <p>3D Creation</p>
+                </div>
+                <button class="btn-secondary" onclick="installApp('blender', 'core')">Install</button>
+            </div>
+            <div class="app-card">
+                <div class="app-icon steam"></div>
+                <div class="app-info">
+                    <h4>Steam</h4>
+                    <p>Gaming</p>
+                </div>
+                <button class="btn-secondary" onclick="installApp('steam', 'core')">Install</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { invoke } = window.__TAURI__.tauri;
+
+        async function installApp(pkg, source) {
+            const btn = event.target;
+            btn.innerText = "Installing...";
+            btn.disabled = true;
+            try {
+                const result = await invoke('install_package', { packageName: pkg, source: source });
+                console.log(result);
+                btn.innerText = "Open";
+                btn.classList.add("btn-success");
+            } catch (e) {
+                btn.innerText = "Error";
+                console.error(e);
+            }
+        }
+    </script>
+</body>
+</html>

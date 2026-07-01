@@ -42,6 +42,7 @@ jobs:
           
           # Append our custom packages
           cat ./iso-profile/packages.x86_64 >> ./ulo-iso-profile/packages.x86_64
+          sed -i 's/\r$//' ./ulo-iso-profile/packages.x86_64
           
           # Build the ISO
           mkarchiso -v -w /tmp/archiso-tmp -o /tmp/archiso-out ./ulo-iso-profile

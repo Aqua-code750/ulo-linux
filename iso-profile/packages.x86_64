@@ -32,7 +32,6 @@ polkit-kde-agent
 qt5-wayland
 qt6-wayland
 sddm
-wlroots
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-wlr
 gjs
@@ -49,18 +48,11 @@ alacritty
 thunar
 thunar-volman
 gvfs
-gvfs-google
+gvfs-goa
 chromium
 mpv
 imv
 code
-steam
-lutris
-gamemode
-mangohud
-vkbasalt
-wine-staging
-winetricks
 timeshift
 flatpak
 gnome-keyring

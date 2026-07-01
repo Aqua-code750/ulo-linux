@@ -33,7 +33,14 @@ jobs:
           cp -r /usr/share/archiso/configs/releng ./ulo-iso-profile
           
           # Inject Ulo specific configuration and packages
-          cp ./iso-profile/profiledef.sh ./ulo-iso-profile/
+          # We use sed to modify the original profiledef.sh instead of replacing it,
+          # to preserve all internal file permissions required by mkarchiso.
+          sed -i 's/iso_name="archlinux"/iso_name="ulo-linux"/' ./ulo-iso-profile/profiledef.sh
+          sed -i 's/iso_label="ARCH_$(date +%Y%m)"/iso_label="ULO_$(date +%Y%m)"/' ./ulo-iso-profile/profiledef.sh
+          sed -i 's/iso_publisher="Arch Linux <https:\/\/archlinux.org>"/iso_publisher="Ulo Linux <https:\/\/ulo.linux>"/' ./ulo-iso-profile/profiledef.sh
+          sed -i 's/iso_application="Arch Linux Live\/Rescue CD"/iso_application="Ulo Linux Live\/Rescue CD"/' ./ulo-iso-profile/profiledef.sh
+          
+          # Append our custom packages
           cat ./iso-profile/packages.x86_64 >> ./ulo-iso-profile/packages.x86_64
           
           # Build the ISO

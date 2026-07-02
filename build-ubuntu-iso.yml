@@ -1,0 +1,53 @@
+name: Build Ulo Linux (Ubuntu Base)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Live Build
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y live-build debootstrap squashfs-tools xorriso grub-pc-bin grub-efi-amd64-bin mtools
+
+      - name: Configure Live Build
+        run: |
+          mkdir -p build-iso
+          cd build-iso
+          
+          # Initialize live-build config for Ubuntu Jammy (22.04 LTS)
+          lb config \
+            --mode ubuntu \
+            --distribution jammy \
+            --archive-areas "main restricted universe multiverse" \
+            --linux-flavours generic \
+            --linux-packages "linux-image linux-headers" \
+            --bootappend-live "boot=casper quiet splash" \
+            --iso-application "Ulo Linux" \
+            --iso-publisher "Ulo Linux" \
+            --iso-volume "Ulo Linux Live" \
+            --debian-installer false
+            
+          # Copy our custom configurations and apps into the build environment
+          cp -r ../config/* config/
+          mkdir -p config/includes.chroot/opt/
+          cp -r ../apps config/includes.chroot/opt/ulo-apps
+
+      - name: Build ISO
+        run: |
+          cd build-iso
+          sudo lb build
+
+      - name: Upload ISO Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ulo-linux-ubuntu-iso
+          path: build-iso/live-image-amd64.hybrid.iso
+          retention-days: 7

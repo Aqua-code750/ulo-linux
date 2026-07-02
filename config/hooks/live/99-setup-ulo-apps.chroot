@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# This script runs inside the Ubuntu chroot environment during the ISO build.
+
+echo "Setting up Ulo Linux custom technologies..."
+
+# 1. Setup Bytebot
+cat << 'EOF' > /usr/local/bin/bytebot
+#!/bin/bash
+echo "Initializing Bytebot..."
+echo "Hello! I am Bytebot, your intelligent assistant on Ulo Linux."
+echo "I am deeply integrated into this OS."
+# Future logic for Bytebot will go here
+EOF
+chmod +x /usr/local/bin/bytebot
+
+# 2. Setup Ulo Apps on the Desktop
+# Create default Desktop directory for the skeleton user (copied to all new users)
+mkdir -p /etc/skel/Desktop
+
+# Create Ulo Store shortcut
+cat << 'EOF' > /etc/skel/Desktop/UloStore.desktop
+[Desktop Entry]
+Name=Ulo Store
+Comment=Install applications easily
+Exec=sh -c "cd /opt/ulo-apps/ulo-store && npm start"
+Icon=system-software-install
+Terminal=false
+Type=Application
+Categories=System;
+EOF
+chmod +x /etc/skel/Desktop/UloStore.desktop
+
+# Create Ulo Browser shortcut
+cat << 'EOF' > /etc/skel/Desktop/UloBrowser.desktop
+[Desktop Entry]
+Name=Ulo Browser
+Comment=Browse the web securely
+Exec=chromium-browser --start-maximized --app=https://google.com
+Icon=web-browser
+Terminal=false
+Type=Application
+Categories=Network;
+EOF
+chmod +x /etc/skel/Desktop/UloBrowser.desktop
+
+# Create Bytebot shortcut
+cat << 'EOF' > /etc/skel/Desktop/Bytebot.desktop
+[Desktop Entry]
+Name=Bytebot
+Comment=Your personal AI Assistant
+Exec=alacritty -e bytebot
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=Utility;
+EOF
+chmod +x /etc/skel/Desktop/Bytebot.desktop
+
+echo "Ulo Linux setup complete."

@@ -1,28 +1,48 @@
 @echo off
-REM Ulo Linux QEMU Launcher for Windows
-REM This script launches the compiled Ulo Linux ISO in QEMU with virtio optimizations.
+setlocal
+echo ==================================================
+echo      Starting Ulo Linux in QEMU (Testing Mode)
+echo ==================================================
+echo.
 
-set ISO_PATH=ulo-linux-release.iso
-set MEMORY=8192
-set CPU_CORES=8
+:: Find the first ISO file in the directory
+set "ISO_FILE="
+for %%f in (*.iso) do (
+    set "ISO_FILE=%%f"
+    goto :found
+)
 
-if not exist "%ISO_PATH%" (
-    echo Error: %ISO_PATH% not found!
-    echo Please download the ISO from GitHub Actions or place it in this directory.
+:found
+if "%ISO_FILE%"=="" (
+    echo [ERROR] No .iso file found in this directory!
+    echo Please extract the downloaded ulo-linux-iso.zip file right here in the folder.
+    echo.
     pause
     exit /b 1
 )
 
-echo Launching Ulo Linux in QEMU...
-qemu-system-x86_64 ^
-  -m %MEMORY% ^
-  -smp %CPU_CORES% ^
-  -enable-kvm -cpu host ^
-  -vga virtio -display sdl,gl=on ^
-  -cdrom %ISO_PATH% ^
-  -boot d ^
-  -device virtio-balloon ^
-  -net nic,model=virtio -net user
+echo Found ISO image: %ISO_FILE%
+echo Booting your custom operating system...
+echo.
 
-echo QEMU exited.
-pause
+:: Check if QEMU is installed in the default Windows location
+set "QEMU_PATH=C:\Program Files\qemu\qemu-system-x86_64.exe"
+
+if exist "%QEMU_PATH%" (
+    "%QEMU_PATH%" -m 4G -smp 2 -cdrom "%ISO_FILE%" -boot d -vga virtio -full-screen
+) else (
+    :: Fallback to checking if QEMU is already in the system PATH
+    qemu-system-x86_64 -m 4G -smp 2 -cdrom "%ISO_FILE%" -boot d -vga virtio -full-screen
+)
+
+:: If QEMU fails, output a helpful message
+if %errorlevel% neq 0 (
+    echo.
+    echo [ERROR] QEMU failed to launch or is not installed.
+    echo.
+    echo To run this script, you need QEMU installed on Windows.
+    echo You can download the Windows installer here:
+    echo https://qemu.weilnetz.de/w64/
+    echo.
+    pause
+)

@@ -33,7 +33,9 @@ jobs:
             --iso-application "Ulo Linux" \
             --iso-publisher "Ulo Linux" \
             --iso-volume "Ulo Linux Live" \
-            --debian-installer false
+            --debian-installer false \
+            --syslinux-theme "" \
+            --bootloaders "grub-efi"
             
           # Copy our custom configurations and apps into the build environment
           cp -r ../config/* config/

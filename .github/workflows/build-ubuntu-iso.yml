@@ -22,10 +22,7 @@ jobs:
           mkdir -p build-iso
           cd build-iso
           
-          # Bypass syslinux and isohybrid entirely to avoid Ubuntu theme issues
-          sudo rm -f /usr/bin/isohybrid || true
-          echo -e '#!/bin/bash\nexit 0' | sudo tee /usr/bin/isohybrid
-          sudo chmod +x /usr/bin/isohybrid
+          # We will mock isohybrid inside the chroot below, after config is generated.
           
           # Initialize live-build config for Ubuntu Jammy (22.04 LTS)
           lb config \
@@ -43,6 +40,12 @@ jobs:
             
           # Copy our custom configurations and apps into the build environment
           cp -r ../config/* config/
+          
+          # Mock isohybrid inside the chroot so it doesn't crash on GRUB-only ISOs
+          mkdir -p config/includes.chroot/usr/bin/
+          echo -e '#!/bin/bash\nexit 0' > config/includes.chroot/usr/bin/isohybrid
+          chmod +x config/includes.chroot/usr/bin/isohybrid
+          
           mkdir -p config/includes.chroot/opt/
           cp -r ../apps config/includes.chroot/opt/ulo-apps
 

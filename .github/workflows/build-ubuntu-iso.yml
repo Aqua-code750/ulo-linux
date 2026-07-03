@@ -22,9 +22,9 @@ jobs:
           mkdir -p build-iso
           cd build-iso
           
-          # Patch live-build's hardcoded Ubuntu syslinux theme bug
-          sudo sed -i 's/syslinux-themes-ubuntu-oneiric//g' /usr/lib/live/build/binary_syslinux || true
-          sudo sed -i 's/gfxboot-theme-ubuntu//g' /usr/lib/live/build/binary_syslinux || true
+          # Patch live-build's hardcoded Ubuntu syslinux theme bug globally
+          sudo find /usr/lib/live/build -type f -exec sed -i 's/syslinux-themes-ubuntu-oneiric/syslinux-common/g' {} + || true
+          sudo find /usr/lib/live/build -type f -exec sed -i 's/gfxboot-theme-ubuntu/syslinux-common/g' {} + || true
           
           # Initialize live-build config for Ubuntu Jammy (22.04 LTS)
           lb config \

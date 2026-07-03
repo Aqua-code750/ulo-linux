@@ -15,7 +15,7 @@ jobs:
       - name: Install Live Build
         run: |
           sudo apt-get update
-          sudo apt-get install -y live-build debootstrap squashfs-tools xorriso grub-pc-bin grub-efi-amd64-bin mtools
+          sudo apt-get install -y live-build debootstrap squashfs-tools xorriso grub-pc-bin grub-efi-amd64-bin mtools syslinux-utils
 
       - name: Configure Live Build
         run: |

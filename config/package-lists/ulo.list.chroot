@@ -51,3 +51,7 @@ xserver-xorg
 xwayland
 pulseaudio
 alsa-utils
+
+# ISO Generation
+isolinux
+syslinux-utils

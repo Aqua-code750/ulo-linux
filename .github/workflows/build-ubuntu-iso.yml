@@ -22,6 +22,10 @@ jobs:
           mkdir -p build-iso
           cd build-iso
           
+          # Patch live-build's hardcoded Ubuntu syslinux theme bug
+          sudo sed -i 's/syslinux-themes-ubuntu-oneiric//g' /usr/lib/live/build/binary_syslinux || true
+          sudo sed -i 's/gfxboot-theme-ubuntu//g' /usr/lib/live/build/binary_syslinux || true
+          
           # Initialize live-build config for Ubuntu Jammy (22.04 LTS)
           lb config \
             --mode ubuntu \
@@ -33,9 +37,7 @@ jobs:
             --iso-application "Ulo Linux" \
             --iso-publisher "Ulo Linux" \
             --iso-volume "Ulo Linux Live" \
-            --debian-installer false \
-            --syslinux-theme "" \
-            --bootloader "grub-efi"
+            --debian-installer false
             
           # Copy our custom configurations and apps into the build environment
           cp -r ../config/* config/

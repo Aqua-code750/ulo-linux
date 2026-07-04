@@ -29,10 +29,10 @@ echo.
 set "QEMU_PATH=C:\Program Files\qemu\qemu-system-x86_64.exe"
 
 if exist "%QEMU_PATH%" (
-    "%QEMU_PATH%" -m 4G -smp 2 -cdrom "%ISO_FILE%" -boot d -vga virtio -full-screen -drive if=pflash,format=raw,readonly=on,file=ovmf.fd
+    "%QEMU_PATH%" -m 4G -smp 2 -cdrom "%ISO_FILE%" -vga qxl -kernel vmlinuz -initrd initrd -append "boot=casper username=ubuntu autologin"
 ) else (
     :: Fallback to checking if QEMU is already in the system PATH
-    qemu-system-x86_64 -m 4G -smp 2 -cdrom "%ISO_FILE%" -boot d -vga virtio -full-screen -drive if=pflash,format=raw,readonly=on,file=ovmf.fd
+    qemu-system-x86_64 -m 4G -smp 2 -cdrom "%ISO_FILE%" -vga qxl -kernel vmlinuz -initrd initrd -append "boot=casper username=ubuntu autologin"
 )
 
 :: If QEMU fails, output a helpful message

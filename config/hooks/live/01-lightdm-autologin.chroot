@@ -1,0 +1,15 @@
+#!/bin/bash
+# Enable LightDM autologin for the 'ubuntu' user
+
+echo "I: Configuring LightDM autologin..."
+
+mkdir -p /etc/lightdm/lightdm.conf.d
+
+cat > /etc/lightdm/lightdm.conf.d/50-autologin.conf << 'EOF'
+[Seat:*]
+autologin-guest=false
+autologin-user=ubuntu
+autologin-user-timeout=0
+EOF
+
+echo "I: LightDM autologin configured successfully."

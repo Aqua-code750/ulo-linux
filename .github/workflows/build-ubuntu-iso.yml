@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -54,9 +56,12 @@ jobs:
           cd build-iso
           sudo lb build
 
-      - name: Upload ISO Artifact
-        uses: actions/upload-artifact@v4
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: ulo-linux-ubuntu-iso
-          path: build-iso/*.iso
-          retention-days: 7
+          tag_name: "v1.0-alpha-${{ github.run_number }}"
+          name: "Ulo Linux v1.0 Alpha (Build ${{ github.run_number }})"
+          body: "Automated build of Ulo Linux (Ubuntu Base) including Bytebot and Ulo Apps."
+          files: build-iso/*.iso
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

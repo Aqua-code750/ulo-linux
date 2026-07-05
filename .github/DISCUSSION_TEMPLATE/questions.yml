@@ -1,0 +1,20 @@
+title: "❓ Question"
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # ❓ Ask the Ulo Linux Community
+        Have a question? We're here to help!
+  - type: textarea
+    id: question
+    attributes:
+      label: "Your Question"
+      placeholder: "Ask anything about Ulo Linux..."
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: "Additional Context"
+      placeholder: "What have you already tried?"
+      required: false

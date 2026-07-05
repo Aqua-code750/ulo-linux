@@ -30,6 +30,7 @@ jobs:
           lb config \
             --mode ubuntu \
             --distribution jammy \
+            --bootloader grub-efi \
             --binary-images tar \
             --archive-areas "main restricted universe multiverse" \
             --linux-flavours generic \

@@ -9,6 +9,7 @@ net-tools
 wireless-tools
 wpagui
 grub-pc
+grub-efi-amd64-bin
 grub-efi-amd64-signed
 shim-signed
 

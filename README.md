@@ -34,6 +34,12 @@ The latest ISO image is compiled automatically in the cloud.
 ### 1. Download the ISO
 👉 [**Download the Latest Ulo Linux ISO**](https://github.com/Aqua-code750/ulo-linux/releases/latest)
 
+> [!NOTE]
+> Because GitHub has a 2GB file limit, the ISO is split into 3 parts (`partaa`, `partab`, `partac`). 
+> **How to join them:**
+> - **Windows:** Open Command Prompt and run: `copy /b ulo-linux.iso.part* ulo-linux.iso`
+> - **Linux/Mac:** Open Terminal and run: `cat ulo-linux.iso.part* > ulo-linux.iso`
+
 *(Note: Ulo Linux also compiles experimental ARM64 Mobile RootFS tarballs for embedded developers!)*
 
 ### 2. Create a Bootable USB

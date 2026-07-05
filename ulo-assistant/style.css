@@ -49,13 +49,14 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-#hide-btn {
+#hide-btn, #settings-btn {
     -webkit-app-region: no-drag;
     background: transparent;
     border: none;
     color: var(--text-muted);
     cursor: pointer;
     font-size: 16px;
+    margin-left: 10px;
 }
 
 .chat-area {

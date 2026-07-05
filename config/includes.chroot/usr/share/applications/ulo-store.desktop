@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Ulo Store
+Comment=Discover and install software for Ulo Linux
+Exec=/opt/ulo-store/ulo-store --no-sandbox
+Icon=system-software-install
+Terminal=false
+Categories=System;Settings;Utility;
+StartupNotify=true

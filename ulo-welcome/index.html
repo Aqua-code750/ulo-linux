@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Ulo Linux</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Custom Frameless Titlebar -->
+    <div class="titlebar">
+        <div class="titlebar-title">Ulo Setup</div>
+        <div class="titlebar-controls">
+            <button id="close-btn">✕</button>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Background decorative blobs -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+
+        <!-- Glassmorphism Card -->
+        <div class="glass-card">
+            <div class="slides-container" id="slides-container">
+                
+                <!-- Slide 1: Welcome -->
+                <div class="slide active" id="slide-1">
+                    <div class="logo-container">
+                        <div class="ulo-logo">U</div>
+                    </div>
+                    <h1>Welcome to <span class="gradient-text">Ulo Linux</span></h1>
+                    <p>The next-generation operating system built for speed, beauty, and intelligence. Let's get your environment set up.</p>
+                    <button class="primary-btn" onclick="nextSlide(2)">Get Started</button>
+                </div>
+
+                <!-- Slide 2: Theme -->
+                <div class="slide" id="slide-2">
+                    <h2>Choose Your Look</h2>
+                    <p>Select a theme that matches your vibe.</p>
+                    <div class="theme-picker">
+                        <div class="theme-option active" onclick="selectTheme('dark', this)">
+                            <div class="theme-preview dark-preview"></div>
+                            <span>Dark</span>
+                        </div>
+                        <div class="theme-option" onclick="selectTheme('light', this)">
+                            <div class="theme-preview light-preview"></div>
+                            <span>Light</span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="secondary-btn" onclick="nextSlide(1)">Back</button>
+                        <button class="primary-btn" onclick="nextSlide(3)">Continue</button>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Finish -->
+                <div class="slide" id="slide-3">
+                    <div class="success-icon">✓</div>
+                    <h2>You're All Set!</h2>
+                    <p>Your Ulo Linux environment is ready. Enjoy the seamless experience and powerful new tools.</p>
+                    <button class="primary-btn pulse-btn" onclick="finishSetup()">Start Exploring</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

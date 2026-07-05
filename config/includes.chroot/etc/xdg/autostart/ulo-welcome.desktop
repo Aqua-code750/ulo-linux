@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Ulo Welcome
+Comment=Welcome to Ulo Linux
+Exec=/opt/ulo-welcome/ulo-welcome --no-sandbox
+Terminal=false
+Categories=Utility;
+X-GNOME-Autostart-enabled=true
+NoDisplay=false

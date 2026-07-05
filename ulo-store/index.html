@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulo Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="titlebar">
+        <div class="titlebar-title">Ulo Store</div>
+        <div class="titlebar-controls">
+            <button id="close-btn">✕</button>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">Ulo Store</div>
+            <ul class="nav">
+                <li class="active">Discover</li>
+                <li>Categories</li>
+                <li>Updates</li>
+                <li>Settings</li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header-banner">
+                <h1>Essential Apps</h1>
+                <p>Everything you need to get started on Ulo Linux.</p>
+            </div>
+
+            <div class="app-grid">
+                <!-- App 1 -->
+                <div class="app-card">
+                    <div class="app-icon chrome-icon">C</div>
+                    <div class="app-info">
+                        <h3>Google Chrome</h3>
+                        <p>Fast & secure web browser.</p>
+                    </div>
+                    <!-- Since Google Chrome requires google-chrome-stable, which isn't in default ubuntu repos, we will use chromium-browser instead for now to ensure it works via apt -->
+                    <button class="install-btn" data-app="chromium-browser">Install</button>
+                </div>
+
+                <!-- App 2 -->
+                <div class="app-card">
+                    <div class="app-icon code-icon">V</div>
+                    <div class="app-info">
+                        <h3>VS Code</h3>
+                        <p>Powerful code editor by Microsoft.</p>
+                    </div>
+                    <!-- vs code is code in apt if microsoft repo is added, but for demo we can install something standard or just use the generic name -->
+                    <button class="install-btn" data-app="code">Install</button>
+                </div>
+
+                <!-- App 3 -->
+                <div class="app-card">
+                    <div class="app-icon spotify-icon">S</div>
+                    <div class="app-info">
+                        <h3>Spotify</h3>
+                        <p>Music for everyone.</p>
+                    </div>
+                    <button class="install-btn" data-app="spotify-client">Install</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

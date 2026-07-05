@@ -23,8 +23,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y live-build debootstrap qemu-user-static binfmt-support qemu-system-arm
-          # Copy qemu-aarch64-static to a standard location so debootstrap can use it
-          sudo cp /usr/bin/qemu-aarch64-static /usr/bin/
 
       - name: Configure Live Build (ARM64)
         run: |

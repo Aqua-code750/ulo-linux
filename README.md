@@ -60,3 +60,4 @@ Ulo Linux is built completely via GitHub Actions using Debian `live-build`. If y
 ---
 
 *Created by Aqua-code750*
+*Note: the real ui/ux is not real compared to the screenshot it is a mock screenshot*

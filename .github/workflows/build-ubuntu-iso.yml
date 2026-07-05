@@ -30,7 +30,7 @@ jobs:
           lb config \
             --mode ubuntu \
             --distribution jammy \
-            --bootloader grub-efi \
+            --bootloader syslinux,grub-efi \
             --archive-areas "main restricted universe multiverse" \
             --linux-flavours generic \
             --linux-packages "linux-image linux-headers" \
@@ -42,11 +42,6 @@ jobs:
             
           # Copy our custom configurations and apps into the build environment
           cp -r ../config/* config/
-          
-          # Mock isohybrid inside the chroot so it doesn't crash on GRUB-only ISOs
-          mkdir -p config/includes.chroot/usr/bin/
-          echo -e '#!/bin/bash\nexit 0' > config/includes.chroot/usr/bin/isohybrid
-          chmod +x config/includes.chroot/usr/bin/isohybrid
           
           mkdir -p config/includes.chroot/opt/
           cp -r ../apps config/includes.chroot/opt/ulo-apps

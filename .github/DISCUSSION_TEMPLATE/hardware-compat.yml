@@ -1,0 +1,30 @@
+title: "🖥️ Hardware Compatibility Report"
+labels: ["hardware"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # 🖥️ Hardware Compatibility Report
+        Share your Ulo Linux experience on your hardware!
+  - type: input
+    id: hardware
+    attributes:
+      label: "Hardware/Device"
+      placeholder: "e.g., Lenovo ThinkPad X1 Carbon Gen 11, Dell XPS 15"
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: "Your Experience"
+      placeholder: "How well does Ulo Linux work? Any issues?"
+      required: true
+  - type: dropdown
+    id: rating
+    attributes:
+      label: "Overall Rating"
+      options:
+        - "⭐ - Barely works"
+        - "⭐⭐ - Needs work"
+        - "⭐⭐⭐ - Good"
+        - "⭐⭐⭐⭐ - Great"
+        - "⭐⭐⭐⭐⭐ - Perfect"

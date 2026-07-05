@@ -1,0 +1,33 @@
+#!/bin/bash
+# Remove default Ubuntu/GNOME applications to debloat Ulo Linux
+
+echo "I: Removing Ubuntu bloatware..."
+
+# Keep Firefox since we don't have our own browser yet.
+# Purge standard bloatware
+apt-get purge -y \
+    libreoffice* \
+    thunderbird* \
+    rhythmbox* \
+    totem* \
+    transmission* \
+    remmina* \
+    cheese \
+    shotwell \
+    simple-scan \
+    gnome-mahjongg \
+    gnome-mines \
+    gnome-sudoku \
+    aisleriot \
+    gnome-software \
+    ubuntu-software \
+    snapd \
+    yelp
+
+# Clean up unused dependencies left behind by the purged packages
+apt-get autoremove -y --purge
+
+# Clean the apt cache
+apt-get clean
+
+echo "I: Bloatware removed successfully."

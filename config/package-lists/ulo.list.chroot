@@ -59,12 +59,9 @@ powertop
 ubuntu-drivers-common
 xserver-xorg-video-all
 xserver-xorg-input-all
-bcmwl-kernel-source
 
 # Extended OEM Compatibility (Lenovo, Dell, HP, Apple)
 fwupd
-tp-smapi-dkms
-acpi-call-dkms
 smbios-utils
 mbpfan
 

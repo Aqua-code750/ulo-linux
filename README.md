@@ -11,6 +11,12 @@
 
 Ulo Linux is a lightweight, ultra-compatible, and premium Linux distribution built on the bedrock of Ubuntu 22.04 LTS. It strips away the bloat and injects modern cloud-AI paradigms directly into the desktop experience.
 
+<div align="center">
+  <img src="assets/wallpaper.png" alt="Ulo Linux Desktop" width="48%">
+  <img src="assets/assistant.png" alt="Ulo Assistant" width="48%">
+  <p><em>(Left) The Premium Ulo Desktop &nbsp; &nbsp; &nbsp; (Right) The AI-Powered Ulo Assistant</em></p>
+</div>
+
 Whether you're running it as a Live USB on a ThinkPad or daily-driving it on a high-end desktop, Ulo Linux provides a flawless out-of-the-box experience.
 
 ### ✨ Core Features

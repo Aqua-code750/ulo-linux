@@ -12,4 +12,9 @@ autologin-user=ubuntu
 autologin-user-timeout=0
 EOF
 
+# Disable the PAM requirement that blocks autologin if not in nopasswdlogin group
+if [ -f /etc/pam.d/lightdm-autologin ]; then
+    sed -i 's/auth    required    pam_succeed_if.so user ingroup nopasswdlogin/#auth    required    pam_succeed_if.so user ingroup nopasswdlogin/' /etc/pam.d/lightdm-autologin
+fi
+
 echo "I: LightDM autologin configured successfully."

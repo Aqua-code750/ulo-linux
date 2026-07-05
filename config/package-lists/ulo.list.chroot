@@ -67,7 +67,7 @@ mbpfan
 
 # Installer (OOBE Setup)
 calamares
-calamares-settings-ubuntu
+calamares-settings-ubuntu-common
 
 # ISO Generation
 isolinux

@@ -1,0 +1,14 @@
+title: "📢 New Announcement"
+labels: ["announcement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # 📢 Ulo Linux Announcement
+        Share exciting updates about Ulo Linux!
+  - type: textarea
+    id: announcement
+    attributes:
+      label: "What's new?"
+      placeholder: "Describe the announcement..."
+      required: true

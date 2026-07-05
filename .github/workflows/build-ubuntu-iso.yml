@@ -30,7 +30,7 @@ jobs:
           lb config \
             --mode ubuntu \
             --distribution jammy \
-            --bootloader syslinux,grub-efi \
+            --bootloader syslinux \
             --archive-areas "main restricted universe multiverse" \
             --linux-flavours generic \
             --linux-packages "linux-image linux-headers" \

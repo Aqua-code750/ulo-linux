@@ -30,23 +30,15 @@ jobs:
           lb config \
             --mode ubuntu \
             --distribution jammy \
-            --bootloader grub-efi \
+            --binary-images tar \
             --archive-areas "main restricted universe multiverse" \
             --linux-flavours generic \
             --linux-packages "linux-image linux-headers" \
-            --bootappend-live "boot=casper quiet splash" \
-            --iso-application "Ulo Linux" \
-            --iso-publisher "Ulo Linux" \
-            --iso-volume "Ulo Linux Live" \
+            --bootappend-live "boot=casper quiet splash ---" \
             --debian-installer false
             
           # Copy our custom configurations and apps into the build environment
           cp -r ../config/* config/
-          
-          # Mock isohybrid inside the chroot so it doesn't crash on GRUB-only ISOs
-          mkdir -p config/includes.chroot/usr/bin/
-          echo -e '#!/bin/bash\nexit 0' > config/includes.chroot/usr/bin/isohybrid
-          chmod +x config/includes.chroot/usr/bin/isohybrid
           
           mkdir -p config/includes.chroot/opt/
           cp -r ../apps config/includes.chroot/opt/ulo-apps
@@ -74,6 +66,24 @@ jobs:
         run: |
           cd build-iso
           sudo lb build
+          
+          # Unpack the raw root filesystem
+          mkdir -p iso_root
+          sudo tar -xf *.tar* -C iso_root/ || true
+          
+          # Manually construct the boot sectors
+          sudo mkdir -p iso_root/boot/grub
+          echo '
+          set timeout=5
+          set default=0
+          menuentry "Start Ulo Linux" {
+              linux /casper/vmlinuz boot=casper quiet splash ---
+              initrd /casper/initrd
+          }
+          ' | sudo tee iso_root/boot/grub/grub.cfg
+          
+          # Generate mathematically perfect Hybrid ISO using grub-mkrescue
+          sudo grub-mkrescue -o ulo-linux.iso iso_root/
 
       - name: Split ISO for GitHub Releases (2GB limit)
         run: |

@@ -14,5 +14,5 @@ if exist "C:\Program Files\qemu\qemu-system-x86_64.exe" (
     set QEMU_PATH="C:\Program Files\qemu\qemu-system-x86_64.exe"
 )
 
-%QEMU_PATH% -m 4G -smp 4 -cdrom ulo-linux.iso -vga virtio
+%QEMU_PATH% -bios "C:\Program Files\qemu\share\edk2-x86_64-code.fd" -m 4G -smp 4 -cdrom ulo-linux.iso -vga virtio
 pause

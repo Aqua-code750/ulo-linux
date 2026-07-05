@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+# Update Calamares to use Ulo Linux branding
+if [ -f /etc/calamares/settings.conf ]; then
+    sed -i 's/branding: .*/branding: ulo/g' /etc/calamares/settings.conf
+fi

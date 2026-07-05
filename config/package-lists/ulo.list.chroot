@@ -43,7 +43,7 @@ python3-pip
 chromium-browser
 build-essential
 
-# Hardware Support
+# Hardware Support & Laptop Compatibility
 linux-firmware
 amd64-microcode
 intel-microcode
@@ -51,6 +51,19 @@ xserver-xorg
 xwayland
 pulseaudio
 alsa-utils
+bluez
+blueman
+tlp
+acpi-support
+powertop
+ubuntu-drivers-common
+xserver-xorg-video-all
+xserver-xorg-input-all
+bcmwl-kernel-source
+
+# Installer (OOBE Setup)
+calamares
+calamares-settings-ubuntu
 
 # ISO Generation
 isolinux

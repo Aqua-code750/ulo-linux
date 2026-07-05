@@ -1,0 +1,29 @@
+---
+componentName:  ulo
+windowExpanding: no
+windowSize: 800px,520px
+windowPlacement: center
+
+strings:
+    productName:         Ulo Linux
+    shortProductName:    Ulo
+    version:             1.0
+    shortVersion:        1.0
+    versionedName:       Ulo Linux 1.0
+    shortVersionedName:  Ulo 1.0
+    bootloaderEntryName: Ulo Linux
+    productUrl:          https://aqua-code750.github.io/ulo-linux/
+    supportUrl:          https://github.com/aqua-code750/ulo-linux/issues
+    knownIssuesUrl:      https://github.com/aqua-code750/ulo-linux/issues
+    releaseNotesUrl:     https://github.com/aqua-code750/ulo-linux/releases
+
+images:
+    productLogo:         "show.png"
+    productIcon:         "show.png"
+    productWelcome:      "languages.png"
+
+style:
+   sidebarBackground:    "#050505"
+   sidebarText:          "#FFFFFF"
+   sidebarTextSelect:    "#06b6d4"
+   sidebarTextHighlight: "#4F46E5"

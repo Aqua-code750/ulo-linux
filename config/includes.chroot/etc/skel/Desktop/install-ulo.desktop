@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Install Ulo Linux
+Comment=Install this system permanently to your hard disk
+Exec=sudo calamares
+Icon=calamares
+Terminal=false
+Categories=System;
+StartupNotify=true

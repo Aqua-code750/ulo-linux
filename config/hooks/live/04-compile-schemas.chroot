@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+# Compile GLib schemas to apply the custom Ulo Linux settings
+glib-compile-schemas /usr/share/glib-2.0/schemas/

@@ -1,0 +1,66 @@
+name: Build Ulo Linux (ARM64 Mobile)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-arm64:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+
+      - name: Install Live Build and QEMU Static
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y live-build debootstrap qemu-user-static binfmt-support qemu-system-arm
+          # Copy qemu-aarch64-static to a standard location so debootstrap can use it
+          sudo cp /usr/bin/qemu-aarch64-static /usr/bin/
+
+      - name: Configure Live Build (ARM64)
+        run: |
+          mkdir -p build-arm64
+          cd build-arm64
+          
+          # Initialize live-build config for Ubuntu Jammy ARM64
+          # We use tar instead of iso-hybrid because phones don't boot ISOs.
+          # The tarball contains the complete root filesystem to be flashed to a device.
+          lb config \
+            --mode ubuntu \
+            --distribution jammy \
+            --architecture arm64 \
+            --binary-images tar \
+            --archive-areas "main restricted universe multiverse" \
+            --linux-packages "linux-image" \
+            --debian-installer false
+            
+          # Copy our custom configurations
+          cp -r ../config/* config/
+          
+          # NOTE: We skip compiling Electron apps for ARM64 in this initial test build
+          # because electron-packager requires additional cross-compilation setups.
+
+      - name: Build Ulo Linux ARM64 RootFS
+        run: |
+          cd build-arm64
+          # Note: Emulated builds take significantly longer.
+          sudo lb build
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "v1.0-mobile-${{ github.run_number }}"
+          name: "Ulo Linux Mobile ARM64 (Build ${{ github.run_number }})"
+          body: "Automated ARM64 Mobile build of Ulo Linux. This is a generic rootfs tarball for advanced flashing."
+          files: build-arm64/live-image-arm64.tar.tar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,20 @@
+[org.cinnamon.desktop.background]
+picture-uri='file:///usr/share/backgrounds/ulo-wallpaper.png'
+
+[org.cinnamon.desktop.interface]
+gtk-theme='Mint-Y-Dark'
+icon-theme='Mint-Y-Dark'
+
+[org.cinnamon.theme]
+name='Mint-Y-Dark'
+
+[org.cinnamon.desktop.wm.preferences]
+theme='Mint-Y-Dark'
+
+[org.cinnamon.desktop.keybindings.custom-keybinding:/org/cinnamon/desktop/keybindings/custom-keybindings/custom0/]
+name='Ulo Assistant'
+command='/opt/ulo-assistant/ulo-assistant --no-sandbox'
+binding='<Primary>space'
+
+[org.cinnamon.desktop.keybindings]
+custom-list=['custom0']

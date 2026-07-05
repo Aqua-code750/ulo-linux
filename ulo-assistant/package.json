@@ -1,0 +1,12 @@
+{
+  "name": "ulo-assistant",
+  "version": "1.0.0",
+  "description": "AI Assistant for Ulo Linux",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^43.0.0"
+  }
+}

@@ -63,6 +63,11 @@ jobs:
           npx electron-packager . ulo-store --platform=linux --arch=x64 --out=dist
           mkdir -p ../build-iso/config/includes.chroot/opt/ulo-store
           cp -r dist/ulo-store-linux-x64/* ../build-iso/config/includes.chroot/opt/ulo-store/
+          cd ../ulo-assistant
+          npm install
+          npx electron-packager . ulo-assistant --platform=linux --arch=x64 --out=dist
+          mkdir -p ../build-iso/config/includes.chroot/opt/ulo-assistant
+          cp -r dist/ulo-assistant-linux-x64/* ../build-iso/config/includes.chroot/opt/ulo-assistant/
           cd ..
 
       - name: Build Ulo Linux ISO

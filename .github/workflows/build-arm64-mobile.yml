@@ -44,6 +44,18 @@ jobs:
           # Copy our custom configurations
           cp -r ../config/* config/
           
+          # Remove x86_64/AMD64 specific packages for the ARM64 build to prevent apt failures
+          sed -i '/amd64-microcode/d' config/package-lists/ulo.list.chroot
+          sed -i '/intel-microcode/d' config/package-lists/ulo.list.chroot
+          sed -i '/tp-smapi-dkms/d' config/package-lists/ulo.list.chroot
+          sed -i '/acpi-call-dkms/d' config/package-lists/ulo.list.chroot
+          sed -i '/mbpfan/d' config/package-lists/ulo.list.chroot
+          sed -i '/grub-pc/d' config/package-lists/ulo.list.chroot
+          sed -i '/grub-efi-amd64-signed/d' config/package-lists/ulo.list.chroot
+          sed -i '/shim-signed/d' config/package-lists/ulo.list.chroot
+          sed -i '/syslinux-utils/d' config/package-lists/ulo.list.chroot
+          sed -i '/isolinux/d' config/package-lists/ulo.list.chroot
+          
           # NOTE: We skip compiling Electron apps for ARM64 in this initial test build
           # because electron-packager requires additional cross-compilation setups.
 

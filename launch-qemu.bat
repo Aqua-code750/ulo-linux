@@ -1,18 +1,11 @@
 @echo off
 echo ==================================================
 echo Launching Ulo Linux in QEMU...
-echo Make sure you have combined the ISO parts into 'ulo-linux.iso'
-if not exist ulo-linux.iso (
-    echo [INFO] ulo-linux.iso not found! 
-    echo [INFO] Automatically merging downloaded parts partaa, partab, partac...
-    copy /b ulo-linux.iso.part* ulo-linux.iso
-    echo [INFO] Merge complete!
-)
+echo ==================================================
 
 set QEMU_PATH=qemu-system-x86_64
-if exist "C:\Program Files\qemu\qemu-system-x86_64.exe" (
-    set QEMU_PATH="C:\Program Files\qemu\qemu-system-x86_64.exe"
-)
+if exist "C:\Program Files\qemu\qemu-system-x86_64.exe" set QEMU_PATH="C:\Program Files\qemu\qemu-system-x86_64.exe"
 
-%QEMU_PATH% -bios "C:\Program Files\qemu\share\edk2-x86_64-code.fd" -m 4G -smp 4 -cdrom ulo-linux.iso -vga virtio
+echo [INFO] Booting Ulo Linux Direct Kernel mode...
+%QEMU_PATH% -m 4G -smp 4 -kernel vmlinuz -initrd initrd -append "boot=casper quiet splash" -drive file=ulo-linux.iso,format=raw,media=cdrom -vga virtio
 pause
